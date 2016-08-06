@@ -1,3 +1,4 @@
+# Overview
 
 1. Source (don't run) `start-docker-osx.sh` - this will create a VM (if
 needed) named `mlcaffe`, and set it up.
@@ -6,7 +7,7 @@ needed) named `mlcaffe`, and set it up.
 
 Or, if you want to push to DockerHub,
 
-    docker build -t <username>/caffe:cpu standalone cpu
+    docker build -t <username>/caffe:cpu standalone/cpu
 
 Then, create a repository on DockerHub and 
 
@@ -36,3 +37,7 @@ container. To run a script on the host machine, use commands like:
 Other usage flags are available at:
 
     https://github.com/BVLC/caffe/tree/master/docker
+
+## More
+
+To stop Docker, use `docker-machine stop mlcaffe`.
