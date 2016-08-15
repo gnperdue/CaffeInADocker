@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libprotobuf-dev \
         libsnappy-dev \
         protobuf-compiler \
+        graphviz \
         python-dev \
         python-numpy \
         python-pip \
@@ -35,7 +36,8 @@ RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/gnperdue/caffe-1.git 
     for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
     mkdir build && cd build && \
     cmake -DCPU_ONLY=1 .. && \
-    make -j"$(nproc)"
+    make -j"$(nproc)" && \
+    make runtest
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
