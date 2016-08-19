@@ -30,10 +30,11 @@ WORKDIR $CAFFE_ROOT
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
 # Use Sohini's updated Caffe with Gradient Reversal Layer
 # See http://sites.skoltech.ru/sites/compvision_wiki/static_pages/projects//grl/
+# and https://github.com/sohiniu/caffe
 ENV CLONE_TAG=patch-2
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/gnperdue/caffe-1.git . && \
-    for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
+    for req in $(cat python/requirements.txt) pydot lmdb; do pip install $req; done && \
     mkdir build && cd build && \
     cmake -DCPU_ONLY=1 .. && \
     make -j"$(nproc)" && \
