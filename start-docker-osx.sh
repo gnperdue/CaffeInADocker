@@ -22,7 +22,7 @@ VM_EXISTS_CODE=$?
 if [ $VM_EXISTS_CODE -eq 1 ]; then
   $DOCKER_MACHINE rm -f $VM &> /dev/null
   rm -rf ~/.docker/machine/machines/$VM
-  $DOCKER_MACHINE create -d virtualbox --virtualbox-memory 4096 --virtualbox-disk-size 204800 $VM
+  $DOCKER_MACHINE create -d virtualbox --virtualbox-memory 8192 --virtualbox-disk-size 204800 $VM
 fi
 
 VM_STATUS=$($DOCKER_MACHINE status $VM 2>&1)
