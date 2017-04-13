@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         cmake \
         git \
+        graphviz \
         wget \
         libatlas-base-dev \
         libboost-all-dev \
@@ -17,7 +18,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libprotobuf-dev \
         libsnappy-dev \
         protobuf-compiler \
-        graphviz \
         python-dev \
         python-numpy \
         python-pip \
@@ -31,7 +31,7 @@ WORKDIR $CAFFE_ROOT
 # Use Sohini's updated Caffe with Gradient Reversal Layer
 # See http://sites.skoltech.ru/sites/compvision_wiki/static_pages/projects//grl/
 # and https://github.com/sohiniu/caffe
-ENV CLONE_TAG=patch-2
+ENV CLONE_TAG=grad_rev_layer_gnp2017april
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/gnperdue/caffe-1.git . && \
     for req in $(cat python/requirements.txt) pydot lmdb; do pip install $req; done && \
