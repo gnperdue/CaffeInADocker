@@ -2,6 +2,8 @@
 
 1. Source (don't run) `start-docker-osx.sh` - this will create a VM (if
 needed) named `mlcaffe`, and set it up.
+    * Note: if you already have created `mlcaffe`, you can just use
+    `docker-machine start mlcaffe` and `eval "$(docker-machine env mlcaffe)"`
 2. `cd docker`
 3. `docker build -t caffe:cpu standalone/cpu`
 
