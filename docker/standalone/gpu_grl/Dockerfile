@@ -19,10 +19,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libsnappy-dev \
         protobuf-compiler \
         python-dev \
-        python-numpy \
-        python-pip \
-        python-scipy && \
+        python-pip && \
     rm -rf /var/lib/apt/lists/*
+
+RUN pip install --upgrade pip
 
 ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
