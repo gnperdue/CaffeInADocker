@@ -25,6 +25,11 @@ libdc1394 error: Failed to initialize libdc1394
 caffe version 1.0.0-rc3
 ```
 
+**Note**: you may need to run the command like so:
+```
+docker run -ti <dockerhub username>/caffe:cpu caffe --version
+```
+
 One can also build and run the Caffe tests in the image using:
 ```
 docker run -ti caffe:cpu bash -c "cd /opt/caffe/build; make runtest"
