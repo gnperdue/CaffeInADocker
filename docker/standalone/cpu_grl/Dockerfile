@@ -30,7 +30,7 @@ WORKDIR $CAFFE_ROOT
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
 # Use Sohini's updated Caffe with Gradient Reversal Layer
 # See http://sites.skoltech.ru/sites/compvision_wiki/static_pages/projects//grl/
-# and https://github.com/sohiniu/caffe
+# and https://github.com/sohiniu/caffe -> Sohini used `patch-2`
 ENV CLONE_TAG=grad_rev_layer_gnp2017april
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/gnperdue/caffe-1.git . && \

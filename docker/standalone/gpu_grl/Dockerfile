@@ -1,4 +1,4 @@
-FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04
+FROM nvidia/cuda:7.0-cudnn3-devel-ubuntu14.04
 MAINTAINER caffe-maint@googlegroups.com
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -28,14 +28,16 @@ ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
+# Use Sohini's updated Caffe with Gradient Reversal Layer
+# See http://sites.skoltech.ru/sites/compvision_wiki/static_pages/projects//grl/
+# and https://github.com/sohiniu/caffe -> Sohini used `patch-2`
 ENV CLONE_TAG=grad_rev_layer_gnp2017april
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/gnperdue/caffe-1.git . && \
     for req in $(cat python/requirements.txt) pydot lmdb; do pip install $req; done && \
     mkdir build && cd build && \
     cmake -DUSE_CUDNN=1 .. && \
-    make -j"$(nproc)" && \
-    make runtest
+    make -j"$(nproc)"
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
